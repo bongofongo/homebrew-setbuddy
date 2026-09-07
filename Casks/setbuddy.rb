@@ -13,8 +13,8 @@ cask "setbuddy" do
   # The app gates its whole UI on mpv being present, and mpv brings ffmpeg and
   # ffprobe with it, which is where track metadata and thumbnails come from.
   depends_on formula: "mpv"
-  # Matches LSMinimumSystemVersion in the bundle.
-  depends_on macos: ">= :sonoma"
+  # Sonoma or newer, matching LSMinimumSystemVersion in the bundle.
+  depends_on macos: :sonoma
 
   app "Setbuddy.app"
   # The same core, driven from a shell: `setbuddy play <file|query>`.
@@ -26,7 +26,5 @@ cask "setbuddy" do
 
   # The library index, resume positions and cached artwork. Not touched by
   # uninstall: someone reinstalling wants their library back.
-  zap trash: [
-    "~/Library/Application Support/Setbuddy",
-  ]
+  zap trash: "~/Library/Application Support/Setbuddy"
 end
